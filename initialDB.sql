@@ -28,6 +28,7 @@ CREATE TABLE Portfolios
 (
    portfolio_id          int 	           auto_increment,
    portfolio_name        varchar(40)       NOT NULL,
+   portfolio_balance     decimal(14,2) NOT NULL DEFAULT 0,
 
    PRIMARY KEY (portfolio_id)
 );
