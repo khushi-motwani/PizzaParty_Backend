@@ -4,8 +4,7 @@ USE Portfolio;
 
 CREATE TABLE Assets
 (
-   asset_id          int 	           auto_increment,
-   asset_symbol      varchar(20)       NOT NULL,
+   asset_id          varchar(20)       NOT NULL,
    asset_name        varchar(40)       NOT NULL,
    asset_type        varchar(20)       NOT NULL DEFAULT 'UNKNOWN',
    asset_sector      varchar(40)       NOT NULL DEFAULT 'UNKNOWN',
