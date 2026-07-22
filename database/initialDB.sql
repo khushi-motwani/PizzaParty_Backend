@@ -38,7 +38,7 @@ CREATE TABLE Transactions
 (
    transaction_id    int               auto_increment,
    portfolio_id      int               NOT NULL,
-   asset_id          int,     -- facilitate transaction types of withdrawal/deposit
+   asset_id          varchar(20),
    transaction_type  varchar(20)       NOT NULL DEFAULT 'UNKNOWN',
    transaction_quantity  int           NOT NULL DEFAULT 0,
    transaction_price     decimal(14,4),
