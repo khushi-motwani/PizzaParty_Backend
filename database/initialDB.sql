@@ -14,17 +14,6 @@ CREATE TABLE Assets
    PRIMARY KEY(asset_id)
 );
 
-
-CREATE TABLE AssetPrices
-(
-   asset_id          varchar(20)       NOT NULL,
-   price             decimal(14,4)     NOT NULL,
-   as_of_timestamp   datetime          NOT NULL,
-
-   PRIMARY KEY(asset_id, as_of_timestamp),
-   FOREIGN KEY(asset_id) REFERENCES Assets(asset_id)
-);
-
 CREATE TABLE Portfolios
 (
    portfolio_id          int 	           auto_increment,
