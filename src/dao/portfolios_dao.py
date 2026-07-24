@@ -2,8 +2,8 @@ from dao.db_config import get_db_connection
 from dto.portfolios_dto import PortfoliosDTO
 
 class PortfoliosDao:
-    def __init__(self):
-        self.connection = get_db_connection()
+    def __init__(self, connection=None):
+        self.connection = connection if connection is not None else get_db_connection()
         self.portfolios = []
         self.total = 0
 
