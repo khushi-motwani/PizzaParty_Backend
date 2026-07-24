@@ -3,55 +3,55 @@ USE Portfolio;
 
 -- ==================== GETTER OPERATIONS ====================
 
--- Get all portfolios
+-- def getAllPortfolios()
 SELECT * FROM Portfolios ORDER BY portfolio_id;
 
--- Get portfolio by ID
-SELECT * FROM Portfolios WHERE portfolio_id = 1;
+-- def getPortfolioById(portfolio_id)
+SELECT * FROM Portfolios WHERE portfolio_id = ?;
 
--- Get portfolio balance
+-- def getPortfolioBalance(portfolio_id)
 SELECT portfolio_id, portfolio_name, portfolio_balance
 FROM Portfolios
-WHERE portfolio_id = 1;
+WHERE portfolio_id = ?;
 
--- Get total balance across all portfolios
+-- def getTotalBalance()
 SELECT SUM(portfolio_balance) as total_balance FROM Portfolios;
 
--- Get portfolio count
+-- def getPortfolioCount()
 SELECT COUNT(*) as total_portfolios FROM Portfolios;
 
--- Get portfolios sorted by balance (highest first)
+-- def getPortfoliosSortedByBalanceDesc()
 SELECT * FROM Portfolios ORDER BY portfolio_balance DESC;
 
--- Get portfolios sorted by balance (lowest first)
+-- def getPortfoliosSortedByBalanceAsc()
 SELECT * FROM Portfolios ORDER BY portfolio_balance ASC;
 
 -- ==================== SETTER OPERATIONS ====================
 
--- Insert a new portfolio
+-- def insertPortfolio(portfolio_name, portfolio_balance)
 INSERT INTO Portfolios (portfolio_name, portfolio_balance)
-VALUES ('My Portfolio', 10000.00);
+VALUES (?, ?);
 
--- Update portfolio name
+-- def updatePortfolioName(portfolio_id, portfolio_name)
 UPDATE Portfolios
-SET portfolio_name = 'New Portfolio Name'
-WHERE portfolio_id = 1;
+SET portfolio_name = ?
+WHERE portfolio_id = ?;
 
--- Update portfolio balance
+-- def updatePortfolioBalance(portfolio_id, portfolio_balance)
 UPDATE Portfolios
-SET portfolio_balance = 15000.00
-WHERE portfolio_id = 1;
+SET portfolio_balance = ?
+WHERE portfolio_id = ?;
 
--- Increment portfolio balance
+-- def incrementPortfolioBalance(portfolio_id, amount)
 UPDATE Portfolios
-SET portfolio_balance = portfolio_balance + 5000.00
-WHERE portfolio_id = 1;
+SET portfolio_balance = portfolio_balance + ?
+WHERE portfolio_id = ?;
 
--- Decrement portfolio balance
+-- def decrementPortfolioBalance(portfolio_id, amount)
 UPDATE Portfolios
-SET portfolio_balance = portfolio_balance - 2000.00
-WHERE portfolio_id = 1;
+SET portfolio_balance = portfolio_balance - ?
+WHERE portfolio_id = ?;
 
--- Delete a portfolio
+-- def deletePortfolio(portfolio_id)
 DELETE FROM Portfolios
-WHERE portfolio_id = 1;
+WHERE portfolio_id = ?;

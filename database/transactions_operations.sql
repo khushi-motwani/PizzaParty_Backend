@@ -3,54 +3,54 @@ USE Portfolio;
 
 -- ==================== GETTER OPERATIONS ====================
 
--- Get all transactions
+-- def getAllTransactions()
 SELECT * FROM Transactions ORDER BY transaction_date DESC;
 
--- Get transaction by ID
-SELECT * FROM Transactions WHERE transaction_id = 1;
+-- def getTransactionById(transaction_id)
+SELECT * FROM Transactions WHERE transaction_id = ?;
 
--- Get all transactions for a portfolio
+-- def getTransactionsByPortfolio(portfolio_id)
 SELECT * FROM Transactions
-WHERE portfolio_id = 1
+WHERE portfolio_id = ?
 ORDER BY transaction_date DESC;
 
--- Get transactions for a specific asset in a portfolio
+-- def getTransactionsByAsset(portfolio_id, asset_id)
 SELECT * FROM Transactions
-WHERE portfolio_id = 1 AND asset_id = 'ASSET001'
+WHERE portfolio_id = ? AND asset_id = ?
 ORDER BY transaction_date DESC;
 
--- Get transactions by type (BUY, SELL, etc.)
+-- def getTransactionsByType(transaction_type)
 SELECT * FROM Transactions
-WHERE transaction_type = 'BUY'
+WHERE transaction_type = ?
 ORDER BY transaction_date DESC;
 
--- Get transactions within a date range
+-- def getTransactionsByDateRange(start_date, end_date)
 SELECT * FROM Transactions
-WHERE transaction_date BETWEEN '2024-01-01' AND '2024-12-31'
+WHERE transaction_date BETWEEN ? AND ?
 ORDER BY transaction_date DESC;
 
--- Get transactions for a portfolio within a date range
+-- def getTransactionsByPortfolioAndDateRange(portfolio_id, start_date, end_date)
 SELECT * FROM Transactions
-WHERE portfolio_id = 1
-AND transaction_date BETWEEN '2024-01-01' AND '2024-12-31'
+WHERE portfolio_id = ?
+AND transaction_date BETWEEN ? AND ?
 ORDER BY transaction_date DESC;
 
--- Get transaction count
+-- def getTransactionCount()
 SELECT COUNT(*) as total_transactions FROM Transactions;
 
--- Get transaction count for a portfolio
+-- def getTransactionCountByPortfolio(portfolio_id)
 SELECT COUNT(*) as transaction_count FROM Transactions
-WHERE portfolio_id = 1;
+WHERE portfolio_id = ?;
 
--- Get total transaction value for a portfolio
+-- def getTotalTransactionValueByPortfolio(portfolio_id)
 SELECT SUM(transaction_total) as total_value FROM Transactions
-WHERE portfolio_id = 1;
+WHERE portfolio_id = ?;
 
--- Get average transaction price for an asset
+-- def getAverageTransactionPriceByAsset(asset_id)
 SELECT AVG(transaction_price) as avg_price FROM Transactions
-WHERE asset_id = 'ASSET001';
+WHERE asset_id = ?;
 
--- Get buy vs sell summary for a portfolio
+-- def getTransactionSummaryByPortfolio(portfolio_id)
 SELECT
     transaction_type,
     COUNT(*) as count,
@@ -58,28 +58,28 @@ SELECT
     SUM(transaction_total) as total_value,
     AVG(transaction_price) as avg_price
 FROM Transactions
-WHERE portfolio_id = 1
+WHERE portfolio_id = ?
 GROUP BY transaction_type;
 
 -- ==================== SETTER OPERATIONS ====================
 
--- Insert a new transaction
+-- def insertTransaction(portfolio_id, asset_id, transaction_type, transaction_quantity, transaction_price, transaction_date, transaction_total, balance_after_transaction)
 INSERT INTO Transactions (portfolio_id, asset_id, transaction_type, transaction_quantity, transaction_price, transaction_date, transaction_total, balance_after_transaction)
-VALUES (1, 'ASSET001', 'BUY', 10, 150.5000, '2024-01-15 10:30:00', 1505.00, 8495.00);
+VALUES (?, ?, ?, ?, ?, ?, ?, ?);
 
--- Update transaction
+-- def updateTransaction(transaction_id, transaction_type, transaction_quantity, transaction_price, transaction_total, balance_after_transaction)
 UPDATE Transactions
-SET transaction_type = 'SELL',
-    transaction_quantity = 5,
-    transaction_price = 155.2500,
-    transaction_total = 776.25,
-    balance_after_transaction = 9271.25
-WHERE transaction_id = 1;
+SET transaction_type = ?,
+    transaction_quantity = ?,
+    transaction_price = ?,
+    transaction_total = ?,
+    balance_after_transaction = ?
+WHERE transaction_id = ?;
 
--- Delete a transaction
+-- def deleteTransaction(transaction_id)
 DELETE FROM Transactions
-WHERE transaction_id = 1;
+WHERE transaction_id = ?;
 
--- Delete all transactions for a portfolio
+-- def deleteTransactionsByPortfolio(portfolio_id)
 DELETE FROM Transactions
-WHERE portfolio_id = 1;
+WHERE portfolio_id = ?;
