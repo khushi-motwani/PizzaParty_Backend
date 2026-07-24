@@ -5,10 +5,6 @@ assets_bp = Blueprint('assets', __name__, url_prefix='/assets')
 
 assets_service = AssetsService()
 
-def set_assets_service(service):
-    global assets_service
-    assets_service = service
-
 @assets_bp.route('/all', methods=['GET'])
 def get_all_assets():
     assets = assets_service.get_all()

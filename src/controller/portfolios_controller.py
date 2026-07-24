@@ -5,10 +5,6 @@ portfolios_bp = Blueprint('portfolios', __name__, url_prefix='/portfolios')
 
 portfolios_service = PortfoliosService()
 
-def set_portfolios_service(service):
-    global portfolios_service
-    portfolios_service = service
-
 @portfolios_bp.route('/all', methods=['GET'])
 def get_all_portfolios():
     portfolios = portfolios_service.get_all()
